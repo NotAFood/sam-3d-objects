@@ -7,20 +7,20 @@ name = "sam3d_objects"
 version = "0.0.1"
 requires-python = "==3.11.*"
 dependencies = [
-    # --- PyTorch core (cu128 build from PyTorch wheel index; required for SM 12.0 / Blackwell) ---
-    "torch==2.7.0+cu128",
-    "torchvision==0.22.0+cu128",
-    "torchaudio==2.7.0+cu128",
-    "xformers",
-    "lightning",                         # unpinned; 2.3.3 targeted torch 2.5
+    # --- PyTorch core (cu130 build from PyTorch wheel index; matches system CUDA 13.1 major) ---
+    "torch==2.12.1+cu130",
+    "torchvision==0.27.1+cu130",
+    "torchaudio==2.11.0+cu130",
+    "xformers==0.0.35",
+    "lightning",                         # unpinned
     "timm==0.9.16",
     "einops-exts==0.0.4",
 
     # --- nvcc (pip-installed; provides nvcc for source builds) ---
-    "nvidia-cuda-nvcc-cu12",
+    "nvidia-cuda-nvcc-cu13",
 
-    # --- Sparse 3D convolutions (cu124; forward-compat with CUDA 12.8) ---
-    "spconv-cu124",
+    # --- Sparse 3D convolutions (cu126 is highest available; forward-compat with CUDA 13.x driver) ---
+    "spconv-cu126",
 
     # --- 3D geometry ---
     "open3d==0.18.0",
@@ -126,7 +126,7 @@ dependencies = [
     "flash_attn>=2.8.3",
 
     # --- Inference / visualisation (formerly inference extra) ---
-    "kaolin @ git+https://github.com/NotAFood/kaolin.git@984ee3fe67a8c9e27e9250a84c074006547b9851",
+    "kaolin @ git+https://github.com/NotAFood/kaolin.git@b4638f03cf7ddb066ad3a4db28cb42551700c885",
     "gsplat @ git+https://github.com/NotAFood/gsplat.git@fbf9b0a9e0bd66faf9569bbe5a4ff8f1471a57d1",
     "seaborn==0.13.2",
     "gradio==5.49.0",
@@ -148,21 +148,22 @@ packages = ["sam3d_objects"]
 [tool.hatch.metadata]
 allow-direct-references = true
 
-# PyTorch's own wheel index — required for cu128 (SM 12.0 / Blackwell RTX 5090 support).
-# explicit=true means this index is ONLY used for packages listed in [tool.uv.sources],
-# preventing dependency confusion with same-named PyPI packages.
+# PyTorch's own wheel index — cu130 matches system CUDA 13.1 (same major), allowing nvcc
+# to compile CUDA extensions for pytorch3d / kaolin / gsplat / flash-attn.
+# explicit=true means this index is ONLY used for packages listed in [tool.uv.sources].
 [[tool.uv.index]]
-name = "pytorch-cu128"
-url = "https://download.pytorch.org/whl/cu128"
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
 explicit = true
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu128" }
-torchvision = { index = "pytorch-cu128" }
-torchaudio = { index = "pytorch-cu128" }
+torch = { index = "pytorch-cu130" }
+torchvision = { index = "pytorch-cu130" }
+torchaudio = { index = "pytorch-cu130" }
+xformers = { index = "pytorch-cu130" }
 
 [tool.uv.extra-build-dependencies]
-pytorch3d = ["torch==2.7.0+cu128"]
-kaolin = ["torch==2.7.0+cu128", "numpy", "packaging"]
-gsplat = ["torch==2.7.0+cu128"]
-flash-attn = ["torch==2.7.0+cu128", "ninja"]
+pytorch3d = ["torch==2.12.1+cu130"]
+kaolin = ["torch==2.12.1+cu130", "numpy", "packaging"]
+gsplat = ["torch==2.12.1+cu130"]
+flash-attn = ["torch==2.12.1+cu130", "ninja"]
