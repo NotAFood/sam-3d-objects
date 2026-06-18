@@ -156,3 +156,6 @@ allow-direct-references = true
 extra-index-url = [
     "https://download.pytorch.org/whl/cu128",
 ]
+
+[tool.uv.extra-build-dependencies]
+pytorch3d = ["torch"]
