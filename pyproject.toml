@@ -152,6 +152,7 @@ allow-direct-references = true
 # PyTorch's own wheel index — required for cu128 (SM 12.0 / Blackwell RTX 5090 support).
 # This is PyTorch/Meta's server, not NVIDIA's NGC.
 [tool.uv]
+index-strategy = "unsafe-best-match"
 extra-index-url = [
     "https://download.pytorch.org/whl/cu128",
 ]
