@@ -150,12 +150,17 @@ packages = ["sam3d_objects"]
 allow-direct-references = true
 
 # PyTorch's own wheel index — required for cu128 (SM 12.0 / Blackwell RTX 5090 support).
-# This is PyTorch/Meta's server, not NVIDIA's NGC.
-[tool.uv]
-index-strategy = "unsafe-best-match"
-extra-index-url = [
-    "https://download.pytorch.org/whl/cu128",
-]
+# explicit=true means this index is ONLY used for packages listed in [tool.uv.sources],
+# preventing dependency confusion with same-named PyPI packages.
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
 
 [tool.uv.extra-build-dependencies]
 pytorch3d = ["torch"]
