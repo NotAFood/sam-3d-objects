@@ -127,7 +127,7 @@ dependencies = [
 
     # --- Inference / visualisation (formerly inference extra) ---
     "kaolin @ git+https://github.com/NotAFood/kaolin.git@984ee3fe67a8c9e27e9250a84c074006547b9851",
-    "gsplat @ git+https://github.com/nerfstudio-project/gsplat.git",
+    "gsplat @ git+https://github.com/NotAFood/gsplat.git@fbf9b0a9e0bd66faf9569bbe5a4ff8f1471a57d1",
     "seaborn==0.13.2",
     "gradio==5.49.0",
 ]
