@@ -17,7 +17,7 @@ dependencies = [
     "einops-exts==0.0.4",
 
     # --- nvcc (pip-installed; provides nvcc for source builds) ---
-    "nvidia-cuda-nvcc-cu13",
+    "nvidia-cuda-nvcc",
 
     # --- Sparse 3D convolutions (cu126 is highest available; forward-compat with CUDA 13.x driver) ---
     "spconv-cu126",
