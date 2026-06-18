@@ -163,6 +163,6 @@ torchaudio = { index = "pytorch-cu128" }
 
 [tool.uv.extra-build-dependencies]
 pytorch3d = ["torch==2.7.0+cu128"]
-kaolin = ["torch==2.7.0+cu128", "numpy", "setuptools"]
+kaolin = ["torch==2.7.0+cu128", "numpy", "setuptools", "pkg_resources"]
 gsplat = ["torch==2.7.0+cu128"]
 flash-attn = ["torch==2.7.0+cu128", "ninja"]
