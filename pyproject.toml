@@ -16,10 +16,6 @@ dependencies = [
     "timm==0.9.16",
     "einops-exts==0.0.4",
 
-    # --- Build tools ---
-    # setuptools<70 required: kaolin's setup.py uses pkg_resources (removed in setuptools 70+)
-    "setuptools<70",
-
     # --- nvcc (pip-installed; provides nvcc for source builds) ---
     "nvidia-cuda-nvcc-cu12",
 
@@ -130,7 +126,7 @@ dependencies = [
     "flash_attn>=2.8.3",
 
     # --- Inference / visualisation (formerly inference extra) ---
-    "kaolin @ git+https://github.com/NVIDIAGameWorks/kaolin.git",
+    "kaolin @ git+https://github.com/NotAFood/kaolin.git@9c8d183e432b68440b49d17c2ff01992f5906d00",
     "gsplat @ git+https://github.com/nerfstudio-project/gsplat.git",
     "seaborn==0.13.2",
     "gradio==5.49.0",
@@ -167,7 +163,6 @@ torchaudio = { index = "pytorch-cu128" }
 
 [tool.uv.extra-build-dependencies]
 pytorch3d = ["torch==2.7.0+cu128"]
-# setuptools<70 needed: kaolin's setup.py uses pkg_resources removed in setuptools 70+
-kaolin = ["torch==2.7.0+cu128", "numpy", "setuptools==69.5.1"]
+kaolin = ["torch==2.7.0+cu128", "numpy", "packaging"]
 gsplat = ["torch==2.7.0+cu128"]
 flash-attn = ["torch==2.7.0+cu128", "ninja"]
