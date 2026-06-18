@@ -129,7 +129,8 @@ p3d = [
     "flash_attn>=2.8.3",
 ]
 inference = [
-    "kaolin @ git+https://github.com/NVIDIAGameWorks/kaolin.git",
+    # kaolin requires torch at build time — install manually after `uv sync`:
+    #   uv pip install git+https://github.com/NVIDIAGameWorks/kaolin.git
     "gsplat @ git+https://github.com/nerfstudio-project/gsplat.git",
     "seaborn==0.13.2",
     "gradio==5.49.0",
