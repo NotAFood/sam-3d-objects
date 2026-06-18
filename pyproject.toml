@@ -158,4 +158,4 @@ extra-index-url = [
 
 [tool.uv.extra-build-dependencies]
 pytorch3d = ["torch"]
-kaolin = ["torch==2.7.0+cu128"]
+kaolin = ["torch==2.7.0+cu128", "numpy"]
