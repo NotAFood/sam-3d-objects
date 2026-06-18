@@ -16,6 +16,10 @@ dependencies = [
     "timm==0.9.16",
     "einops-exts==0.0.4",
 
+    # --- Build tools ---
+    # setuptools<70 required: kaolin's setup.py uses pkg_resources (removed in setuptools 70+)
+    "setuptools<70",
+
     # --- nvcc (pip-installed; provides nvcc for source builds) ---
     "nvidia-cuda-nvcc-cu12",
 
@@ -161,8 +165,13 @@ torch = { index = "pytorch-cu128" }
 torchvision = { index = "pytorch-cu128" }
 torchaudio = { index = "pytorch-cu128" }
 
+# kaolin's setup.py uses `from pkg_resources import parse_version` which
+# requires setuptools<70 (before pkg_resources was removed). Build without
+# isolation so it picks up the venv's setuptools rather than a fresh latest.
+no-build-isolation-package = ["kaolin"]
+
 [tool.uv.extra-build-dependencies]
 pytorch3d = ["torch==2.7.0+cu128"]
-kaolin = ["torch==2.7.0+cu128", "numpy", "setuptools<70"]
+kaolin = ["torch==2.7.0+cu128", "numpy"]
 gsplat = ["torch==2.7.0+cu128"]
 flash-attn = ["torch==2.7.0+cu128", "ninja"]
