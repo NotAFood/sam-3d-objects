@@ -1,1 +1,68 @@
-__pycache__
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+.uv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+.jupyter/
+.gradio/
+
+# Model checkpoints & large artifacts
+checkpoints/
+*.ckpt
+*.pth
+*.pt
+*.bin
+*.safetensors
+
+# 3D / point cloud outputs
+*.ply
+*.obj
+*.glb
+*.gltf
+splat.ply
+
+# Images / renders
+render_check.png
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.webp
+
+# Notebook outputs (gaussian outputs dir)
+notebook/gaussians/
+notebook/meshes/
+
+# IDE / tools
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude / session files
+.claude/settings.local.json
+.remember/
